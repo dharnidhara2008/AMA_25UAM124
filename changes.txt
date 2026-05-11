@@ -1,0 +1,102 @@
+CHANGES MADE TO BANK ACCOUNT PROGRAM
+
+Added Global Configuration
+
+Included:
+
+#define MAX_RECORDS 100
+
+This allows for easy adjustment of the bank's capacity across all functions from a single location.
+
+Added Automatic Database Initialization
+
+Improved main() logic:
+
+Program now checks if "credit.dat" exists.
+
+If missing, it automatically creates the file.
+
+Initializes the file with 100 blank records to prevent seeking errors.
+
+Added Search Function
+
+New function:
+void searchRecord(FILE *fPtr);
+
+Features:
+
+Allows finding specific accounts by number.
+
+Displays account number, name, and current balance immediately on screen.
+
+Added Fund Transfer Functionality (NEW)
+
+New function:
+void transferFunds(FILE *fPtr);
+
+Features:
+
+Moves money between two existing accounts.
+
+Validates that the source account has sufficient funds.
+
+Updates both records in a single operation.
+
+Added Bank Total Assets Summary (NEW)
+
+New function:
+void bankTotalAssets(FILE *fPtr);
+
+Features:
+
+Scans the entire database.
+
+Calculates the total number of active accounts.
+
+Sums the balances of all customers to show total bank holdings.
+
+Improved Input Validation
+
+Added validations for:
+
+Account number bounds checking (must be between 1 and 100).
+
+Prevention of operations on invalid indices.
+
+Safer File Handling
+
+Improved:
+
+Changed 'while(!feof)' loops to 'while(fread(...) == 1)'.
+
+This prevents the common C error of processing the final record twice.
+
+Added better fseek() positioning logic.
+
+Enhanced deleteRecord() Function
+
+Updated:
+
+Now provides clear feedback when an account is successfully deleted.
+
+Displays a warning if the user attempts to delete a non-existent account.
+
+Improved User Interface & Menu
+
+Updated Choice Menu:
+
+Reorganized menu for better readability.
+
+Added options 5, 6, and 7 for the new features.
+
+Choice 8 now serves as the exit trigger.
+
+General Code Reliability
+
+Improved:
+
+Consistent use of unsigned integers for account numbers.
+
+Better use of struct initialization (e.g., struct clientData source = {0}).
+
+Added success messages for record creation and updates.
